@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Contactus from "./pages/Contactus";
+import Notfound from "./pages/Notfound";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <div className="maindiv">
+        <h1>Bookkeeper!</h1>
+        <nav
+          style={{
+            borderBottom: "solid 1px",
+            paddingBottom: "1rem"
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <Link to="/About">About-Page</Link> |{" "}
+          <Link to="/Contactus">Contactus-Page</Link> |{" "}
+          <Link to="/">Home-Page</Link> |{" "}
+        </nav>
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/About" element={<About />}></Route>
+        <Route path="/Contactus" element={<Contactus />}></Route>
+        <Route path="*" element={<Notfound />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
